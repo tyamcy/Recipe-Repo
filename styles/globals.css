@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
 :root {
     --primary-color: #9C36B5;
@@ -10,9 +11,9 @@
     --primary-color-shade: #6E2680;
     --secondary-color-shade: #A16CB2;
     --text-primary: #000000;
-    --text-secondary: #4e4e4e;
-    --card-background-color: #FBE1BF;
-    --background-color: #FAF5EE; /*fdfde6*/
+    --text-secondary: #606060;
+    --card-background-color: #fce2c0;
+    --background-color: #f2f2f2; /*fdfde6*/
     --gradient: linear-gradient(33deg, #9C36B5, #B74DCB, #CE63E2, #ce82e7, #CE63E2, #B74DCB);
 }
 
@@ -31,8 +32,9 @@ body {
     background: var(--background-color);
 }
 
+/*---Hero---*/
 .home__title {
-    @apply mt-14 mb-5 text-5xl font-extrabold text-black sm:text-6xl;
+    @apply mt-14 mb-5 text-4xl font-extrabold text-black md:text-6xl xl:text-7xl;
 }
 
 .text-gradient {
@@ -67,7 +69,30 @@ body {
     transition ease-in duration-150;
 }
 
+.tertiary-btn {
+    @apply py-2 px-6 text-[color:var(--text-secondary)] border-[color:var(--text-secondary)] border-2 
+    hover:text-[color:var(--text-primary)] hover:border-[color:var(--text-primary)]
+    transition ease-in duration-150;
+}
+
 /*---Recipe card---*/
-.magnet {
-    background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color));
+
+/*---Pages---*/
+.page__title {
+    @apply text-center font-extrabold text-black text-5xl md:text-6xl xl:text-7xl mt-8 mb-4;
+}
+
+.page__description {
+    @apply my-2 text-lg text-center mx-auto w-10/12 md:w-8/12;
+}
+
+/*---Feed---*/
+.searchbar {
+    @apply block w-full rounded-md border border-gray-200 bg-white mx-auto py-2.5 pl-5 pr-12 
+    text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+/*---Pages---*/
+.recipe-list-layout {
+    @apply mb-16 flex flex-wrap gap-3 justify-center;
 }

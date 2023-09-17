@@ -5,11 +5,11 @@ import Image from "next/image";
 import { useState, useEffect } from "react"; 
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
-import { IoMenu, IoClose} from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 import { MdMenuBook, MdLogout } from "react-icons/md";
 
 const Header = () => {
-  const { data:session } = useSession();
+  const { data:session, status } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [mobileNav, setMobileNav] = useState(false);
@@ -22,24 +22,21 @@ const Header = () => {
     }
 
     fetchProviders();
-  }, [])
+  }, []);
 
-  const toggleDropdown = () => {
-    setMobileNav((prev) => !prev); 
-  }
 
   return (
     <header className='flex justify-between items-center h-auto py-4'>
 
       <Link href='/' className="flex gap-4 text-center items-center mx-8">
         <Image src='/assets/icons/logo_icon.svg' height={30} width={30} alt='MyRecipeFridge Logo' className='text-[color:var(--primary-color)]'/>
-        <p className="hidden sm:flex font-bold text-lg">MyRecipeFridge</p>
+        <p className="hidden sm:flex font-bold text-xl text-[color:var(--primary-color)]">Recipe Repo</p>
       </Link>
 
       <div className='sm:flex hidden mx-8'>
           {session?.user ? (
             <div className="flex flex-row gap-4">
-              <Link href='/create-recipe' className='primary-btn'>
+              <Link href='/share-recipe' className='primary-btn'>
                 Share Recipe
               </Link>
 
@@ -47,9 +44,11 @@ const Header = () => {
                 Sign Out
               </button>
 
-              <Link href='/profile' className='items-center m-auto'>
+              
+              <Link href={`/profile/${session?.user.id}`} className='items-center m-auto'>
                 <Image src={session?.user.image} width={38} height={38} className='rounded-full' alt='Profile'/>
               </Link>
+              
             </div>
           ): (
             <>
@@ -65,7 +64,8 @@ const Header = () => {
       <div className='sm:hidden flex relative mx-8'>
         {session?.user ? (
           <div className='flex items-center'>
-            <button type='button' onClick={toggleDropdown()} className='z-100 cursor-pointer'>
+
+            <button type='button' onClick={() => setMobileNav(!mobileNav)} className='z-100 cursor-pointer'>
               {mobileNav ? (
                 <div className='flex'>
                   <IoMenu size={32}/>
@@ -75,10 +75,11 @@ const Header = () => {
               )}
             </button>
 
+
             {mobileNav ? (
               <div>
                 <div className='dropdown'>
-                  <Link href='/profile' className='dropdown-item' onClick={() => setMobileNav(false)}>
+                  <Link href={`/profile/${session?.user.id}`} className='dropdown-item' onClick={() => setMobileNav(false)}>
                     <Image src={session?.user.image} width={36} height={36} 
                       className='rounded-full' 
                       alt='Profile'
@@ -91,7 +92,7 @@ const Header = () => {
                     <div>Share Recipe</div>
                   </Link>
 
-                  <button type='button' className='dropdown-item' onClick={() => {setMobileNav(flase); signOut();}}>
+                  <button type='button' className='dropdown-item' onClick={() => {setMobileNav(false); signOut();}}>
                     <MdLogout size={36}/>
                     <div>Sign Out</div>
                   </button>

@@ -21,6 +21,6 @@ export const connectToDatabase = async () => {
         console.log('MongoDB connected')
         
     } catch (error) {
-        console.log('Error')
+        console.log('Error connecting to database: ', error);
     }
 }
