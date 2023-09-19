@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 
 import { Profile } from '@/components/templates'; 
 
-const MyProfile = ({params}) => {
+const MyProfile = () => {
     const {data:session} = useSession();
+    const router = useRouter();
 
     const [posts, setPosts] = useState([]);
 
@@ -15,8 +16,6 @@ const MyProfile = ({params}) => {
         const fetchPosts = async () => {
             const response = await fetch(`/api/users/${session?.user.id}/posts`);
             const data = await response.json();
-
-            console.log(data);
             
             setPosts(data);
         }
@@ -27,12 +26,25 @@ const MyProfile = ({params}) => {
     },[]);
 
     
-    const handleEdit = () => {
-
+    const handleEdit = (post) => {
+        router.push(`/update-recipe?id=${post._id}`)
     }
 
-    const handleDelete = async () => {
+    const handleDelete = async (post) => {
+        const confirmation = confirm('Are you sure you want to permanently delete this recipe?');
+        if (confirmation) {
+            try {
+                await fetch(`/api/recipe/${post._id.toString()}`, {
+                    method: 'DELETE'
+                });
 
+                const filtered = posts.filter((a) => a._id !== post._id);
+
+                setPosts(filtered);
+            } catch(error) {
+                console.log(error);
+            }
+        }
     }
 
   return (
@@ -40,7 +52,7 @@ const MyProfile = ({params}) => {
         <div className='page__header'>
             <h1 className='page__title'>My Repo</h1>
             <p className='page__description text-center'>
-                View the recipies that you shared here
+                View, edit or delete the recipies that you shared here
             </p>
         </div>
 
@@ -54,4 +66,4 @@ const MyProfile = ({params}) => {
   )
 }
 
-export default MyProfile
+export default MyProfile;

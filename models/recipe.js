@@ -12,6 +12,10 @@ const RecipeSchema = new Schema({
     cuisine: {
         type: String,
         required: [true, 'Cuisine is required.'],
+    },
+    instructions: {
+        type: [String],
+        required: [true, 'Instructions are required'],
     }
 });
 

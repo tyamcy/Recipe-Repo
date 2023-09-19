@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Provider.jsx", "app/page.jsx", "app/layout.jsx", "components/organisms/RecipeForm.jsx", "components/organisms/Footer.jsx", "components/molecules/Card.jsx", "components/templates/Feed.jsx", "components/templates/Hero.jsx", "components/templates/CTA.jsx", "components/templates/Profile.jsx", "components/templates/index.js", "components/atoms/index.js", "components/organisms/index.js", "components/molecules/RecipeCard.tsx", "app/api/users/[id]/posts/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Provider.jsx", "app/page.jsx", "app/layout.jsx", "components/organisms/RecipeForm.jsx", "components/organisms/Footer.jsx", "components/molecules/RecipeCard.jsx", "components/templates/Feed.jsx", "components/templates/Hero.jsx", "components/templates/CTA.jsx", "components/templates/Profile.jsx", "components/templates/index.js", "components/atoms/index.js", "components/organisms/index.js", "components/molecules/RecipeCard.tsx", "app/api/users/[id]/posts/route.js"],
   "exclude": ["node_modules"]
 }

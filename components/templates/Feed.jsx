@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
-import Card from '@/components/molecules/Card';
+import { RecipeCard } from '@/components/molecules';
 
 const RecipeCardList = ({data, handleClick}) => {
   return (
     <div className='mt-16 recipe-list-layout'>
       {data.map((post) => (
-        <Card
+        <RecipeCard
           key={post._id}
           post={post}
           handleClick={handleClick}

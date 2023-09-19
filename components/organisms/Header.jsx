@@ -29,7 +29,7 @@ const Header = () => {
     <header className='flex justify-between items-center h-auto py-4'>
 
       <Link href='/' className="flex gap-4 text-center items-center mx-8">
-        <Image src='/assets/icons/logo_icon.svg' height={30} width={30} alt='MyRecipeFridge Logo' className='text-[color:var(--primary-color)]'/>
+        <Image src='/assets/icons/recipe_repo.svg' height={50} width={50} alt='MyRecipeFridge Logo' className='text-[color:var(--primary-color)]'/>
         <p className="hidden sm:flex font-bold text-xl text-[color:var(--primary-color)]">Recipe Repo</p>
       </Link>
 

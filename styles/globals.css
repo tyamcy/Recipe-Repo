@@ -30,6 +30,10 @@ body {
     font-family: "Roboto", sans-serif;
     margin: auto;
     background: var(--background-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /*---Hero---*/
@@ -75,6 +79,11 @@ body {
     transition ease-in duration-150;
 }
 
+.icon-btn {
+    @apply cursor-pointer text-[color:var(--text-secondary)] hover:text-[color:var(--primary-color)]
+    transition ease-in duration-150;
+}
+
 /*---Recipe card---*/
 
 /*---Pages---*/
@@ -88,7 +97,7 @@ body {
 
 /*---Feed---*/
 .searchbar {
-    @apply block w-full rounded-md border border-gray-200 bg-white mx-auto py-2.5 pl-5 pr-12 
+    @apply block w-full text-[color:var(--text-secondary)] border border-gray-200 bg-white mx-auto py-2.5 pl-5 pr-12 
     text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
 }
 
@@ -96,3 +105,13 @@ body {
 .recipe-list-layout {
     @apply mb-16 flex flex-wrap gap-3 justify-center;
 }
+
+/*---Forms---*/
+.form__textarea-sm {
+    @apply w-full flex h-[42px] mt-2 p-3 text-sm text-[color:var(--text-secondary)] outline-0 resize-none overflow-hidden;
+}
+
+.form__textarea-lg {
+    @apply w-full flex h-[128px] mt-2 p-3 text-sm text-[color:var(--text-secondary)] outline-0 resize-none overflow-hidden;
+}
+

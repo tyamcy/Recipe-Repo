@@ -2,14 +2,15 @@ import { connectToDatabase } from '@/utils/database';
 import Recipe from '@/models/recipe';
 
 export const POST = async (request) => {
-    const { userId, recipe, cuisine } = await request.json();
+    const { userId, recipe, cuisine, instructions } = await request.json();
 
     try {
         await connectToDatabase();
         const newRecipe = new Recipe({
             creator: userId,
             recipe,
-            cuisine
+            cuisine,
+            instructions,
         });
 
         await newRecipe.save();

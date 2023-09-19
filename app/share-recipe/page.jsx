@@ -14,10 +14,11 @@ const ShareRecipe = () => {
     const [post, setPost] = useState({
         recipe: '',
         cuisine: '',
+        instructions: [''],
     });
 
-    const shareRecipe = async (e) => {
-        e.preventDefault();
+    const shareRecipe = async (event) => {
+        event.preventDefault();
         setSubmit(true);
 
         try {
@@ -28,6 +29,7 @@ const ShareRecipe = () => {
                     recipe: post.recipe,
                     userId: session?.user.id,
                     cuisine: post.cuisine,
+                    instructions: post.instructions,
                 })
 
             })
@@ -63,4 +65,4 @@ const ShareRecipe = () => {
   )
 }
 
-export default ShareRecipe
+export default ShareRecipe;
