@@ -14,6 +14,7 @@ const ShareRecipe = () => {
     const [post, setPost] = useState({
         recipe: '',
         cuisine: '',
+        description: '',
         instructions: [''],
     });
 
@@ -29,6 +30,7 @@ const ShareRecipe = () => {
                     recipe: post.recipe,
                     userId: session?.user.id,
                     cuisine: post.cuisine,
+                    description: post.description,
                     instructions: post.instructions,
                 })
 

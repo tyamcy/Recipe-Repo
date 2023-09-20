@@ -2,7 +2,7 @@ import { connectToDatabase } from '@/utils/database';
 import Recipe from '@/models/recipe';
 
 export const POST = async (request) => {
-    const { userId, recipe, cuisine, instructions } = await request.json();
+    const { userId, recipe, cuisine, description, instructions } = await request.json();
 
     try {
         await connectToDatabase();
@@ -10,6 +10,7 @@ export const POST = async (request) => {
             creator: userId,
             recipe,
             cuisine,
+            description,
             instructions,
         });
 

@@ -21,9 +21,25 @@ const RecipeCardList = ({data, handleClick}) => {
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
-  const handleSearch = (e) => {
+  const handleSearch = (event) => {
+    const {value} = event.target;
+    setSearchText(value); 
 
+    if (value.trim() === '') {
+      setFilteredPosts(posts);
+    } else {
+      const filtered = posts.filter((post) => {
+        const postTitle = post.recipe.toLowerCase();
+        const postCuisine = post.cuisine.toLowerCase();
+        const search = value.toLowerCase();
+  
+        return postTitle.includes(search) || postCuisine.includes(search);
+      })
+
+      setFilteredPosts(filtered);
+    }
   }
 
   useEffect(() => {
@@ -32,6 +48,7 @@ const Feed = () => {
       const data = await response.json();
 
       setPosts(data);
+      setFilteredPosts(data);
     }
 
     fetchPosts();
@@ -48,12 +65,13 @@ const Feed = () => {
           required
           className='searchbar peer'
           id='searchbar-input'
+          maxLength={100}
         >
         </input>
       </form>
 
       <RecipeCardList
-        data={posts}
+        data={filteredPosts}
         handleClick={() => {}}
       />
 

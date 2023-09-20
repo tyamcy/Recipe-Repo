@@ -15,6 +15,7 @@ const UpdateRecipe = () => {
     const [post, setPost] = useState({
         recipe: '',
         cuisine: '',
+        description: '',
         instructions: [''],
     });
 
@@ -23,12 +24,11 @@ const UpdateRecipe = () => {
         const response = await fetch(`/api/recipe/${recipeId}`);
         const data = await response.json();
 
-        console.log(data.instructions.join('\n'));
-
         setPost({
           recipe: data.recipe,
           cuisine: data.cuisine,
-          instructions: data.instructions.join('\n'),
+          description: data.description,
+          instructions: data.instructions,
         })
       }
 
@@ -53,6 +53,7 @@ const UpdateRecipe = () => {
                 body: JSON.stringify({
                     recipe: post.recipe,
                     cuisine: post.cuisine,
+                    description: post.description,
                     instructions: post.instructions,
                 })
 

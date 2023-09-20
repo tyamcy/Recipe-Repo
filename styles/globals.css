@@ -85,6 +85,18 @@ body {
 }
 
 /*---Recipe card---*/
+.recipe-modal {
+    @apply z-40 bg-white m-auto
+    fixed top-0 left-0 w-full h-full;
+}
+
+.recipe-modal__content {
+    @apply py-12 px-48 relative;
+}
+
+.recipe-modal-close-btn {
+    @apply absolute top-0 right-0;
+}
 
 /*---Pages---*/
 .page__title {
@@ -109,6 +121,10 @@ body {
 /*---Forms---*/
 .form__textarea-sm {
     @apply w-full flex h-[42px] mt-2 p-3 text-sm text-[color:var(--text-secondary)] outline-0 resize-none overflow-hidden;
+}
+
+.form__textarea-md {
+    @apply w-full flex h-[84px] mt-2 p-3 text-sm text-[color:var(--text-secondary)] outline-0 resize-none overflow-hidden;
 }
 
 .form__textarea-lg {

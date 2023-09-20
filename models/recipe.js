@@ -9,6 +9,10 @@ const RecipeSchema = new Schema({
         type: String,
         required: [true, 'Recipe is required.'],
     },
+    description: {
+        type: String,
+        required: [true, 'Description is required.']
+    },
     cuisine: {
         type: String,
         required: [true, 'Cuisine is required.'],

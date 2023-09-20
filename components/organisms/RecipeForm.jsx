@@ -2,18 +2,27 @@
 
 import Link from "next/link";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { MdAdd, MdRemove } from "react-icons/md";
 
 const RecipeForm = ({action, post, setPost, submit, handleSubmit}) => {
   const [instructions, setInstructions] = useState(post.instructions || ['']);
 
+  useEffect(() => {
+    if (post.instructions) {
+      setInstructions(post.instructions);
+    }
+  }, [post.instructions]);
+
+  console.log(post.instructions);
+  console.log(instructions);
+
   const handleInstructionsChange = (index, value) => {
     const newInstructions = [...instructions];
     newInstructions[index] = value;
     setInstructions(newInstructions);
-    setPost({...post, instructions: newInstructions});
+    setPost((prevPost) => ({ ...prevPost, instructions: newInstructions }));
   };
 
   const addInstruction = () => {
@@ -24,9 +33,8 @@ const RecipeForm = ({action, post, setPost, submit, handleSubmit}) => {
     const newInstructions = [...instructions];
     newInstructions.splice(index, 1);
     setInstructions(newInstructions);
-    setPost({...post, instructions: newInstructions});
+    setPost((prevPost) => ({ ...prevPost, instructions: newInstructions }));
   };
-
 
   return (
     <section className='w-[80%] md:w-full max-w-full flex flex-col justify-center items-center mx-auto'>
@@ -61,6 +69,21 @@ const RecipeForm = ({action, post, setPost, submit, handleSubmit}) => {
             className='form__textarea-sm'
             required
             maxLength={30}
+          />
+        </label>
+
+        <label>
+          <span className='font-semibold text-[color:var(--text-secondary)]'>
+            Description
+          </span>
+
+          <textarea
+            value={post.description}
+            onChange={(event) => setPost({...post, description: event.target.value})}
+            placeholder='A simple dish...'
+            className='form__textarea-md'
+            required
+            maxLength={200}
           />
         </label>
 

@@ -26,7 +26,7 @@ const Header = () => {
 
 
   return (
-    <header className='flex justify-between items-center h-auto py-4'>
+    <header className='flex justify-between items-center h-auto py-4 z-20'>
 
       <Link href='/' className="flex gap-4 text-center items-center mx-8">
         <Image src='/assets/icons/recipe_repo.svg' height={50} width={50} alt='MyRecipeFridge Logo' className='text-[color:var(--primary-color)]'/>
@@ -65,7 +65,7 @@ const Header = () => {
         {session?.user ? (
           <div className='flex items-center'>
 
-            <button type='button' onClick={() => setMobileNav(!mobileNav)} className='z-100 cursor-pointer'>
+            <button type='button' onClick={() => setMobileNav(!mobileNav)} className='z-20 cursor-pointer'>
               {mobileNav ? (
                 <div className='flex'>
                   <IoMenu size={32}/>
