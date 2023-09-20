@@ -14,6 +14,10 @@ const Header = () => {
   const [providers, setProviders] = useState(null);
   const [mobileNav, setMobileNav] = useState(false);
 
+  const goToHomePage = () => {
+    window.location.href = '/';
+  }
+
   useEffect(() => {
     const fetchProviders = async () => {
       const response = await getProviders();
@@ -40,7 +44,7 @@ const Header = () => {
                 Share Recipe
               </Link>
 
-              <button type='button' onClick={signOut} className='secondary-btn'>
+              <button type='button' onClick={() => {signOut(); goToHomePage();}} className='secondary-btn'>
                 Sign Out
               </button>
 
@@ -61,23 +65,25 @@ const Header = () => {
           )}
       </div>
 
-      <div className='sm:hidden flex relative mx-8'>
+      <div className='sm:hidden flex mx-8'>
         {session?.user ? (
           <div className='flex items-center'>
 
-            <button type='button' onClick={() => setMobileNav(!mobileNav)} className='z-20 cursor-pointer'>
+            <button type='button' onClick={() => setMobileNav(!mobileNav)} className='z-50 cursor-pointer'>
               {mobileNav ? (
-                <div className='flex'>
-                  <IoMenu size={32}/>
+                <div className='flex icon-btn'>
+                  <IoClose size={32}/>
                 </div>
               ): (
-                <IoClose size={32}/>
+                <div className='flex icon-btn'>
+                  <IoMenu size={32}/>
+                </div>
               )}
             </button>
 
 
             {mobileNav ? (
-              <div>
+              <div className='absolute top-0 left-0'>
                 <div className='dropdown'>
                   <Link href={`/profile/${session?.user.id}`} className='dropdown-item' onClick={() => setMobileNav(false)}>
                     <Image src={session?.user.image} width={36} height={36} 
@@ -87,12 +93,12 @@ const Header = () => {
                     <div>My Profile</div>
                   </Link>
 
-                  <Link href='/profile' className='dropdown-item' onClick={() => setMobileNav(false)}>
+                  <Link href='/share-recipe' className='dropdown-item' onClick={() => setMobileNav(false)}>
                     <MdMenuBook size={36}/>
                     <div>Share Recipe</div>
                   </Link>
 
-                  <button type='button' className='dropdown-item' onClick={() => {setMobileNav(false); signOut();}}>
+                  <button type='button' className='dropdown-item' onClick={() => {setMobileNav(false); signOut(); goToHomePage();}}>
                     <MdLogout size={36}/>
                     <div>Sign Out</div>
                   </button>

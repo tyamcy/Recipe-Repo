@@ -79,13 +79,13 @@ const RecipeCard = ({ post, handleEdit, handleDelete}) => {
             )}
 
             {/* Card */}
-            <div 
-                className='recipe-card w-96 bg-white shadow-lg p-5 cursor-pointer'
-                onClick={openModal}
-            >
+            <div className='recipe-card w-72 md:w-96 bg-white shadow-lg p-5'>
                 <div className='flex flex-col justify-between'>
                     <div className='flex flex-row justify-between'>
-                        <h3 className='left mb-1 text-xl text-[color:var(--text-primary)] text-left font-semibold'>
+                        <h3 
+                            className='left mb-1 text-xl text-[color:var(--text-primary)] text-left font-semibold cursor-pointer'
+                            onClick={openModal}
+                        >
                             {post.recipe}
                         </h3>
 
@@ -93,13 +93,13 @@ const RecipeCard = ({ post, handleEdit, handleDelete}) => {
                         {session?.user.id === post.creator._id && pathName === `/profile/${session?.user.id}` && (
                             <div className='flex flex-row gap-1.5'>
                                 <p 
-                                    className='icon-btn z-30'
+                                    className='icon-btn'
                                     onClick={handleEdit}
                                 >
                                     <MdEdit size={24}></MdEdit>
                                 </p>
                                 <p 
-                                    className='icon-btn z-30'
+                                    className='icon-btn'
                                     onClick={handleDelete}
                                 >
                                     <MdDelete size={24}></MdDelete>
@@ -109,7 +109,10 @@ const RecipeCard = ({ post, handleEdit, handleDelete}) => {
                     </div>
                     </div>
 
-                    <p className='text-md text-[color:var(--text-secondary)] my-2'>
+                    <p 
+                        className='text-md text-[color:var(--text-secondary)] my-2 cursor-pointer'
+                        onClick={openModal}
+                    >
                         {post.description}
                     </p>
 
